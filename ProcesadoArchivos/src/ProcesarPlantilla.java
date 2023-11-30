@@ -2,9 +2,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  * Procesa un archivo CSV y genera archivos de texto a partir de una plantilla, reemplazando marcadores con datos del CSV que tenemos en la carpeta salida.
  */
+
+
 public class ProcesarPlantilla {
     /**
      * Método principal que inicia el proceso de procesamiento del archivo CSV y la generación de archivos de texto.
@@ -12,6 +15,8 @@ public class ProcesarPlantilla {
      * @param args Los argumentos de la línea de comandos (no se utilizan en este caso).
      */
     public static void main(String[] args) {
+
+
         // Define las rutas de los archivos y la carpeta de salida
         String rutaArchivoCSV = "C:/Users/ElUltimoPasajero/IdeaProjects/ProcesadoArchivos/src/DatosEntrada/data.csv";
         String rutaPlantilla = "C:/Users/ElUltimoPasajero/IdeaProjects/ProcesadoArchivos/src/plantilla/template.txt";
@@ -21,17 +26,26 @@ public class ProcesarPlantilla {
             // Vacia la carpeta de salida antes de comenzar
             vaciarCarpeta(carpetaSalida);
 
-            try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivoCSV))) {
+            try (BufferedReader br = new BufferedReader(new FileReader(rutaArchivoCSV))) { //BufferedReader es una clase que se encuentra en el paquete java.io y se utiliza para
+                // leer datos de un flujo de entrada de caracteres, como un archivo de texto, de manera eficiente
+                //  al almacenar en búfer los datos leídos
+
                 String linea;
+
                 int lineCount = 0;
+
 
                 // Lee el archivo CSV línea por línea
                 while ((linea = br.readLine()) != null) {
-                    lineCount++; // Incrementar el contador de líneas
+
+                    // Incrementar el contador de líneas
+                    lineCount++;
+
                     // Divide la línea en campos utilizando la coma como delimitador
                     String[] campos = linea.split(",");
 
-                    if (!linea.trim().isEmpty()) { // Verificar si la línea no está vacía
+                    // Verificar si la línea no está vacía
+                    if (!linea.trim().isEmpty()) {
                         if (campos.length == 5) {
                             String id = campos[0];
                             String nombreEmpresa = campos[1];
@@ -63,7 +77,7 @@ public class ProcesarPlantilla {
             e.printStackTrace();
         }
     }
-//piiiiiiiiiiiiiiiiii
+
     /**
      * Este método se utiliza para leer una plantilla de texto desde un archivo especificado.
      *
@@ -72,8 +86,11 @@ public class ProcesarPlantilla {
      * @throws IOException Si ocurre un error al leer el archivo de plantilla.
      */
     private static String leerPlantilla(String rutaPlantilla) throws IOException {
-        StringBuilder plantilla = new StringBuilder(); // Inicializa un StringBuilder para almacenar el contenido de la plantilla
 
+        // Inicializa un StringBuilder para almacenar el contenido de la plantilla
+        StringBuilder plantilla = new StringBuilder();
+
+        // Abre un BufferedReader para leer el archivo de la ruta especificada
         try (BufferedReader br = new BufferedReader(new FileReader(rutaPlantilla))) {
             String linea;
             while ((linea = br.readLine()) != null) {
